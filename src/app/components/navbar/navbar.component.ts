@@ -5,6 +5,23 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
+  tags = [
+    {
+      title: 'Highlited tags',
+      values: ['May 2020', 'Nature', 'Macro']
+    },
+    {
+      title: 'By Time',
+      values: ['May', 'April', 'March', 'February', 'January']
+    },
+    { values: ['2020', '2019', '2018', '2017'] },
+    {
+      title: 'By Label',
+      values: ['Family', 'Christmas', 'Nature', 'macro', 'Skylight', 'Animals']
+    },
+    {},
+    { values: ['Show All'] }
+  ];
 
   constructor() { }
 

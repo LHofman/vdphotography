@@ -1,1 +1,58 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle collapsed"
+        data-toggle="collapse"
+        data-target="#navbar-items"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">VDPhotography</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse col-xs-12" id="navbar-items">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Pictures <span class="sr-only">(current)</span></a></li>
+        <li class="dropdown">
+          <a
+            href="#"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false">
+            Tags <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <ng-container *ngFor="let tagsection of tags; let i = index">
+              <li *ngIf="i !== 0"
+                role="separator"
+                class="divider">
+              </li>
+
+              <li *ngIf="tagsection.title"
+                class="dropdown-header">
+                {{ tagsection.title }}
+              </li>
+
+              <li *ngFor="let tagvalue of tagsection.values;">
+                <a href="#">{{ tagvalue }}</a>
+              </li>
+            </ng-container>
+          </ul>
+        </li><!-- /.dropdown -->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    
+    <ul class="nav navbar-nav navbar-right hidden-xs">
+      <li><a href="#">Admin</a></li>
+    </ul>
+  </div><!-- /.container-fluid -->
+</nav>
