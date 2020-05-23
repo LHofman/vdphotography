@@ -1,1 +1,37 @@
-<p>footer works!</p>
+<div id="footer-container">
+  <div class="row">
+    <div class="col-xs-2"></div>
+
+    <div class="col-xs-2">
+      <h4 class="footer-column-header">About Me</h4>
+      <p>{{ aboutMe }}</p>
+    </div>
+
+    <div class="col-xs-1"></div>
+    <div class="col-xs-1"></div>
+
+    <div id="footer-links" class="col-sm-1">
+      <h4 class="footer-column-header">Links</h4>
+      <ul>
+        <li *ngFor="let link of links">
+          <a href="{{ link.url }}" target="_blank">{{ link.value }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-xs-1"></div>
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-2">
+      <h4 class="footer-column-header">Contact</h4>
+      <a href="mailto:marita.van.daele@skynet.be">marita.van.daele@skynet.be</a><br>
+      0479/41.19.96
+    </div>
+
+    <div class="col-xs-2"></div>
+  </div>
+</div>
+
+<div id="footer-copyright-container">
+  <span class="glyphicon glyphicon-copyright-mark"></span> &nbsp; {{ currentYear }} VDPhotography
+</div>
