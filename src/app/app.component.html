@@ -3,13 +3,15 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-8">
-      <app-picture-list></app-picture-list>
+      <app-picture-list
+        (handleClickPicture)="onClickPicture($event)"
+      ></app-picture-list>
     </div>
 
-    <div class="col-md-1"></div>
-    
-    <div class="col-md-3">
-      <app-picture-details></app-picture-details>
+    <div class="col-md-4">
+      <app-picture-details
+        [picture]="selectedPicture"
+      ></app-picture-details>
     </div>
   </div>
 </div>

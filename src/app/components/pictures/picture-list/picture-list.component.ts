@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-picture-list',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./picture-list.component.css']
 })
 export class PictureListComponent implements OnInit {
+  @Output() handleClickPicture = new EventEmitter<string>();
   pictures = [
     'assets/images/-1526382343.jpg',
     'assets/images/1 (1).jpg',
@@ -35,7 +36,10 @@ export class PictureListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+  }
+
+  onClickPicture(picture) {
+    this.handleClickPicture.emit(picture);
   }
 
 }

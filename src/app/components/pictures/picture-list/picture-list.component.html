@@ -2,5 +2,6 @@
   <app-picture-item
     *ngFor="let picture of pictures"
     [picture]="picture"
+    (handleClickPicture)="onClickPicture($event)"
   ></app-picture-item>
 </div>

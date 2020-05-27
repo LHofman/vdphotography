@@ -1,0 +1,12 @@
+.container {
+  width: 100%;
+}
+
+.picture {
+  max-width: 100%;
+  max-height: 525px;
+}
+
+.tag {
+  margin: 2px 5px 2px 0px;
+}
