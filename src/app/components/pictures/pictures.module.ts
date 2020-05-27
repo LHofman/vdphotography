@@ -1,20 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { PictureListComponent } from './picture-list/picture-list.component';
 import { PictureDetailsComponent } from './picture-details/picture-details.component';
+import { PictureListComponent } from './picture-list/picture-list.component';
+import { PictureItemComponent } from './picture-list/picture-item/picture-item.component';
 
 @NgModule({
   declarations: [
-    PictureListComponent,
-    PictureDetailsComponent
+    PictureDetailsComponent,
+    PictureItemComponent,
+    PictureListComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    PictureListComponent,
-    PictureDetailsComponent
+    PictureDetailsComponent,
+    PictureListComponent
   ]
 })
 export class PicturesModule { }

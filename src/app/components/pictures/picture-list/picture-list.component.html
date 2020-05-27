@@ -1,1 +1,6 @@
-<p>picture-list works!</p>
+<div id="picture-list-container">
+  <app-picture-item
+    *ngFor="let picture of pictures"
+    [picture]="picture"
+  ></app-picture-item>
+</div>
