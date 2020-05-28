@@ -29,7 +29,10 @@ export class PictureService {
     'assets/images/istockphoto-1049781144-1024x1024.jpg',
     'assets/images/pet-animal-cute-kitten-baby-cat-mother-145122504.jpg',
     'assets/images/somali-cat-6-week-old-cute-kitten-mouth-open-13483358.jpg.webp',
-    'assets/images/unnamed (1).jpg'
+    'assets/images/unnamed (1).jpg',
+    'assets/images/unnamed.jpg',
+    'assets/images/Various-Cute-Kitten-Animal-Cartoon-Cat-Wall-Sticker-3D-Vivid-Baby-Kid-Room-Bathroom-Decors-Peel.jpg',
+    'assets/images/vermifuger-le-chaton-1-768x512.jpg'
   ];
 
   getPictures() {

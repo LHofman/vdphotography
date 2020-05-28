@@ -8,6 +8,7 @@ import { PictureService } from '../../../services/picture.service';
   styleUrls: ['./picture-list.component.css']
 })
 export class PictureListComponent implements OnInit {
+  title = 'Title';
   pictures: string[] = [];
 
   constructor(private pictureService: PictureService) { }
