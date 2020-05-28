@@ -7,6 +7,7 @@ import { AlbumsModule } from './components/albums/albums.module';
 import { FooterModule } from './components/footer/footer.module';
 import { NavbarModule } from './components/navbar/navbar.module';
 import { PicturesModule } from './components/pictures/pictures.module';
+import { AppRoutingModule } from './routing/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PicturesModule } from './components/pictures/pictures.module';
   ],
   imports: [
     AlbumsModule,
+    AppRoutingModule,
     BrowserModule,
     FooterModule,
     NavbarModule,
