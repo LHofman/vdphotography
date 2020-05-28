@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { PictureService } from 'src/app/services/picture.service';
 
 @Component({
   selector: 'app-picture-item',
@@ -6,16 +8,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./picture-item.component.css']
 })
 export class PictureItemComponent implements OnInit {
-  @Output() handleClickPicture = new EventEmitter<string>();
   @Input() picture: string;
 
-  constructor() { }
+  constructor(private pictureService: PictureService) { }
 
   ngOnInit() {
   }
 
   onClick() {
-    this.handleClickPicture.emit(this.picture);
+    this.pictureService.pictureSelected.emit(this.picture);
   }
 
 }
