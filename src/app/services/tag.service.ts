@@ -26,11 +26,11 @@ export class TagService {
     'Cute'
   ];
 
-  getAll() {
+  getAll(): string[] {
     return this.tags.sort();
   }
 
-  getTagsForNav() {
+  getTagsForNav(): {tag: string, highlighted: boolean}[] {
     return shuffle(
       this.tags.map((tag) => {
         return {tag, highlighted: this.highlightedTags.includes(tag)};

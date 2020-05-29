@@ -9,13 +9,13 @@ import { Picture } from '../components/pictures/picture';
 export class AlbumService {
   albums: Album[];
 
-  getAlbums() {
+  getAlbums(): Album[] {
     this.initAlbums();
     
     return this.albums.slice();
   }
 
-  getAlbum(id) {
+  getAlbum(id): Album | null {
     this.initAlbums();
 
     const album = this.albums.filter((album) => album.id === id);
@@ -23,7 +23,7 @@ export class AlbumService {
     return album ? album[0] : null;
   }
 
-  getPicturesByTag(tag) {
+  getPicturesByTag(tag): Picture[] {
     this.initAlbums();
 
     const pictures = this.albums
