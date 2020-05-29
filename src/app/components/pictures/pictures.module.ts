@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { PictureDetailsComponent } from './picture-details/picture-details.component';
 import { PictureListComponent } from './picture-list/picture-list.component';
 import { PictureItemComponent } from './picture-list/picture-item/picture-item.component';
+import { TagPicturesComponent } from './tag-pictures/tag-pictures.component';
 
 @NgModule({
   declarations: [
     PictureDetailsComponent,
     PictureItemComponent,
-    PictureListComponent
+    PictureListComponent,
+    TagPicturesComponent
   ],
   imports: [
     CommonModule

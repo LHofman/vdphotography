@@ -1,9 +1,15 @@
-<div *ngIf="album">
-  <h1>{{ album.title }}</h1>
-  <div id="picture-list-container">
-    <app-picture-item
-      *ngFor="let picture of album.pictures"
-      [picture]="picture"
-    ></app-picture-item>
+<div class="row">
+  <div class="col-md-8">
+    <h1>{{ title }}</h1>
+    <div id="picture-list-container">
+      <app-picture-item
+        *ngFor="let picture of pictures"
+        [picture]="picture"
+      ></app-picture-item>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <app-picture-details></app-picture-details>
   </div>
 </div>

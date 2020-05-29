@@ -8,7 +8,7 @@ export class NavbarComponent implements OnInit {
   tags = [
     {
       title: 'Highlited tags',
-      values: ['May 2020', 'Nature', 'Macro']
+      values: ['Animals', 'Baby', 'Cute']
     },
     {
       title: 'By Time',

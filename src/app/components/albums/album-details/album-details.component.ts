@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { AlbumService } from 'src/app/services/album.service';
+import { Album } from '../album';
 
 @Component({
   selector: 'app-album-details',
-  templateUrl: './album-details.component.html',
-  styleUrls: ['./album-details.component.css']
+  templateUrl: './album-details.component.html'
 })
 export class AlbumDetailsComponent implements OnInit {
+  album: Album;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -23,8 +25,8 @@ export class AlbumDetailsComponent implements OnInit {
         this.router.navigate(['/albums']);
       }
 
-      this.albumService.selectAlbum(album);
-    })
+      this.album = album;
+    });
   }
 
 }

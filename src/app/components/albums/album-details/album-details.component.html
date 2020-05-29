@@ -1,9 +1,4 @@
-<div class="row">
-  <div class="col-md-8">
-    <app-picture-list></app-picture-list>
-  </div>
-
-  <div class="col-md-4">
-    <app-picture-details></app-picture-details>
-  </div>
-</div>
+<app-picture-list
+  [title]="album.title"
+  [pictures]="album.pictures"
+></app-picture-list>

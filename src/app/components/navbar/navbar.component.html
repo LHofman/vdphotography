@@ -43,7 +43,7 @@
               </li>
 
               <li *ngFor="let tagvalue of tagsection.values;">
-                <a href="#">{{ tagvalue }}</a>
+                <a [routerLink]="['/tags', tagvalue]">{{ tagvalue }}</a>
               </li>
             </ng-container>
           </ul>
