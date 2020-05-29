@@ -5,8 +5,8 @@
     src="{{ picture.src }}"
   />
   <br>
-  <span
+  <app-tag-item
     *ngFor="let tag of picture.tags"
-    class="label label-primary tag"
-  > {{ tag }}</span>
+    [tag]="tag"
+  ></app-tag-item>
 </div>

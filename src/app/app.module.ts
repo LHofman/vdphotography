@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { AppRoutingModule } from './routing/app-routing.module';
 import { AlbumsModule } from './components/albums/albums.module';
 import { FooterModule } from './components/footer/footer.module';
 import { NavbarModule } from './components/navbar/navbar.module';
-import { PicturesModule } from './components/pictures/pictures.module';
-import { AppRoutingModule } from './routing/app-routing.module';
+import { TagsModule } from './components/tags/tags.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
     BrowserModule,
     FooterModule,
     NavbarModule,
-    PicturesModule
+    TagsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

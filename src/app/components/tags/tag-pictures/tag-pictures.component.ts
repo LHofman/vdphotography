@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { AlbumService } from 'src/app/services/album.service';
-import { Picture } from '../picture';
+import { Picture } from '../../pictures/picture';
 
 @Component({
   selector: 'app-tag-pictures',

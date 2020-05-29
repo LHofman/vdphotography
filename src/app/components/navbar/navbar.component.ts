@@ -1,32 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TagService } from 'src/app/services/tag.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  tags = [
-    {
-      title: 'Highlited tags',
-      values: ['Animals', 'Baby', 'Cute']
-    },
-    {
-      title: 'By Time',
-      values: ['May', 'April', 'March', 'February', 'January']
-    },
-    { values: ['2020', '2019', '2018', '2017'] },
-    {
-      title: 'By Label',
-      values: ['Family', 'Christmas', 'Nature', 'macro', 'Skylight', 'Animals']
-    },
-    {},
-    { values: ['Show All'] }
-  ];
-
-  constructor() { }
+  tags = [];
+  
+  constructor(private tagService: TagService) { }
 
   ngOnInit() {
+    const tags = this.tagService.getTagsForNav();
+    this.tags = [
+      {
+        title: 'Highlighted Tags',
+        values: tags.filter((tag) => tag.highlighted).map((tag) => tag.tag).sort()
+      },
+      {
+        title: 'Random Tags',
+        values: tags.filter((tag) => !tag.highlighted).map((tag) => tag.tag).sort()
+      },
+      {},
+      { values: ['Show All'] }
+    ]
   }
 
 }

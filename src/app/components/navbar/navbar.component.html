@@ -43,7 +43,11 @@
               </li>
 
               <li *ngFor="let tagvalue of tagsection.values;">
-                <a routerLinkActive="active-tag" [routerLink]="['/tags', tagvalue]">{{ tagvalue }}</a>
+                <a
+                  routerLinkActive="active-tag"
+                  [routerLink]="tagvalue==='Show All' ? ['/tags'] : ['/tags', tagvalue]"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                >{{ tagvalue }}</a>
               </li>
             </ng-container>
           </ul>
