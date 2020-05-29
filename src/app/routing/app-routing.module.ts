@@ -12,7 +12,8 @@ const appRoutes: Routes = [
   { path: 'albums', component: AlbumListComponent },
   { path: 'album/:id', component: AlbumDetailsComponent },
   { path: 'tags', component: TagListComponent },
-  { path: 'tags/:tag', component: TagPicturesComponent }
+  { path: 'tags/:tag', component: TagPicturesComponent },
+  { path: '**', redirectTo: '/albums' }
 ];
 
 @NgModule({
