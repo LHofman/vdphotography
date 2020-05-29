@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PictureService } from '../../../services/picture.service';
+import { AlbumService } from 'src/app/services/album.service';
+
+import { Album } from '../../albums/album';
 
 @Component({
   selector: 'app-picture-list',
@@ -8,13 +10,15 @@ import { PictureService } from '../../../services/picture.service';
   styleUrls: ['./picture-list.component.css']
 })
 export class PictureListComponent implements OnInit {
-  title = 'Title';
-  pictures: string[] = [];
+  album: Album;
 
-  constructor(private pictureService: PictureService) { }
+  constructor(private albumservice: AlbumService) { }
 
   ngOnInit() {
-    this.pictures = this.pictureService.getPictures();
+    this.album = this.albumservice.selectedAlbum;
+    this.albumservice.albumSelected.subscribe((album:Album) => {
+      this.album = album;
+    });
   }
 
 }

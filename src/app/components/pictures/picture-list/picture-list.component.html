@@ -1,7 +1,9 @@
-<h1>{{ title }}</h1>
-<div id="picture-list-container">
-  <app-picture-item
-    *ngFor="let picture of pictures"
-    [picture]="picture"
-  ></app-picture-item>
+<div *ngIf="album">
+  <h1>{{ album.title }}</h1>
+  <div id="picture-list-container">
+    <app-picture-item
+      *ngFor="let picture of album.pictures"
+      [picture]="picture"
+    ></app-picture-item>
+  </div>
 </div>

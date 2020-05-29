@@ -2,30 +2,22 @@ import { Component, OnInit } from '@angular/core';
 
 import { PictureService } from 'src/app/services/picture.service';
 
+import { Picture } from '../picture';
+
 @Component({
   selector: 'app-picture-details',
   templateUrl: './picture-details.component.html',
   styleUrls: ['./picture-details.component.css']
 })
 export class PictureDetailsComponent implements OnInit {
-  picture: string;
-  title = 'Title';
-  tags: string[] = [];
+  picture: Picture;
 
   constructor(private pictureService: PictureService) { }
 
   ngOnInit() {
-    this.pictureService.pictureSelected.subscribe((picture:string) => {
+    this.pictureService.pictureSelected.subscribe((picture:Picture) => {
       this.picture = picture;
     });
-
-    const tags = [
-      'Animals',
-      'Baby',
-      'Cute',
-    ];
-
-    this.tags = tags.sort();
   }
 
 }

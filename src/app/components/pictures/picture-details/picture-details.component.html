@@ -1,12 +1,12 @@
 <div *ngIf="picture" class="container">
-  <h1>{{ title }}</h1>
+  <h1>{{ picture.title }}</h1>
   <img
     class="picture"
-    src="{{ picture }}"
+    src="{{ picture.src }}"
   />
   <br>
   <span
-    *ngFor="let tag of tags"
+    *ngFor="let tag of picture.tags"
     class="label label-primary tag"
   > {{ tag }}</span>
 </div>
