@@ -1,6 +1,7 @@
 <h4>{{ album.title }}</h4>
-<a class="thumbnail" [routerLink]="['/album', album.id]">
+<a [routerLink]="['/album', album.id]">
   <img
-    src="{{ thumbnail }}"
+    class="album-thumbnail"
+    src="{{ album.thumbnail }}"
   />
 </a>

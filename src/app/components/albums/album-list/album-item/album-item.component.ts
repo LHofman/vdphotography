@@ -8,7 +8,6 @@ import { Album } from '../../album';
 })
 export class AlbumItemComponent implements OnInit {
   @Input() album: Album;
-  thumbnail: string = 'assets/images/-1526382343.jpg';
 
   constructor() { }
 

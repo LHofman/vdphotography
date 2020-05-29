@@ -85,7 +85,8 @@ export class AlbumService {
     
     this.albums = [];
     for (let i=1; i<=27; i++) {
-      this.albums.push(new Album(i, 'Title', pictures));
+      let thumbnail = sources[Math.floor(Math.random() * sources.length)];
+      this.albums.push(new Album(i, 'Title', thumbnail, pictures));
     }
   }
 
