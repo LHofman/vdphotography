@@ -24,22 +24,26 @@ export class AlbumService {
   }
 
   getPicturesByTag(tag): Picture[] {
-    this.initAlbums();
-
-    const pictures = this.albums
-      .reduce<Picture[]>((acc: Picture[], album:Album) => {
-        let allPictures = [...acc, ...album.pictures];
-        return allPictures.filter((picture, index) => allPictures.indexOf(picture) === index);
-      }, [])
-      .filter((picture: Picture) => picture.tags.includes(tag));
-
-    return pictures;
+    return this.getFilteredPictures((picture: Picture) => picture.tags.includes(tag));
   }
 
-  initAlbums() {
+  getPicturesBySearchValue(searchValue): Picture[] {
+    return this.getFilteredPictures((picture: Picture) =>
+      picture.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    );
+  }
+
+  private initAlbums() {
     if (this.albums) {
       return;
     }
+
+    const titles: string[] = [
+      'Title 1',
+      'Cute Animal',
+      'Baby Animal',
+      'Cute Baby Animal'
+    ];
 
     const sources: string[] = [
       'assets/images/-1526382343.jpg',
@@ -80,7 +84,8 @@ export class AlbumService {
 
     for (let i=1; i<=27; i++) {
       let tag = tags[Math.floor(Math.random() * tags.length)];
-      pictures.push(new Picture(i, 'Title', sources[i-1], [tag]));
+      let title = titles[Math.floor(Math.random() * titles.length)];
+      pictures.push(new Picture(i, title, sources[i-1], [tag]));
     }
     
     this.albums = [];
@@ -88,6 +93,19 @@ export class AlbumService {
       let thumbnail = sources[Math.floor(Math.random() * sources.length)];
       this.albums.push(new Album(i, 'Title', thumbnail, pictures));
     }
+  }
+
+  private getFilteredPictures(filterFn): Picture[] {
+    this.initAlbums();
+
+    const pictures = this.albums
+      .reduce<Picture[]>((acc: Picture[], album:Album) => {
+        let allPictures = [...acc, ...album.pictures];
+        return allPictures.filter((picture, index) => allPictures.indexOf(picture) === index);
+      }, [])
+      .filter(filterFn);
+
+    return pictures;
   }
 
   constructor() { }

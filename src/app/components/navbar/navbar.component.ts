@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+import { AlertService } from 'src/app/services/alert.service';
 import { TagService } from 'src/app/services/tag.service';
 
 @Component({
@@ -10,7 +12,11 @@ import { TagService } from 'src/app/services/tag.service';
 export class NavbarComponent implements OnInit {
   tags = [];
   
-  constructor(private tagService: TagService) { }
+  constructor(
+    private router: Router,
+    private alertService: AlertService,
+    private tagService: TagService
+  ) { }
 
   ngOnInit() {
     const tags = this.tagService.getTagsForNav();
@@ -26,6 +32,17 @@ export class NavbarComponent implements OnInit {
       {},
       { values: ['Show All'] }
     ]
+  }
+
+  searchPictures(searchValue: HTMLInputElement) {
+    event.preventDefault();
+
+    if (searchValue.value.length < 3) {
+      this.alertService.flashInfo('Please enter at least 3 characters to filter pictures');
+      return;
+    }
+
+    this.router.navigate(['/picture', 'search', searchValue.value]);
   }
 
 }

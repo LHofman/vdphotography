@@ -1,12 +1,16 @@
 <div class="row">
   <div class="col-md-8">
     <h1>{{ title }}</h1>
-    <div id="picture-list-container">
+    <div id="picture-list-container" *ngIf="pictures.length; else emptyList">
       <app-picture-item
         *ngFor="let picture of pictures"
         [picture]="picture"
       ></app-picture-item>
     </div>
+
+    <ng-template #emptyList>
+      <h3>No Pictures Found</h3>
+    </ng-template>
   </div>
 
   <div class="col-md-4">

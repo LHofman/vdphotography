@@ -29,7 +29,7 @@ export class AlbumDetailsComponent implements OnInit {
 
         if (!album) {
           this.alertService.flashError(`Album with id ${params['id']} not found`);
-          this.router.navigate(['/albums']);
+          this.router.navigate(['/']);
         }
 
         this.album = album;

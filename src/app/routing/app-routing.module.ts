@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AlbumListComponent } from '../components/albums/album-list/album-list.component';
 import { AlbumDetailsComponent } from '../components/albums/album-details/album-details.component';
+import { SearchPictureComponent } from '../components/pictures/search-picture/search-picture.component';
 import { TagPicturesComponent } from '../components/tags/tag-pictures/tag-pictures.component';
 import { TagListComponent } from '../components/tags/tag-list/tag-list.component';
 
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
   { path: 'album/:id', component: AlbumDetailsComponent },
   { path: 'tags', component: TagListComponent },
   { path: 'tags/:tag', component: TagPicturesComponent },
+  { path: 'picture/search/:searchValue', component: SearchPictureComponent },
   { path: '**', redirectTo: '/albums' }
 ];
 
