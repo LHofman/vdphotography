@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+
 import { AlbumService } from 'src/app/services/album.service';
+import { AlertService } from 'src/app/services/alert.service';
+
 import { Picture } from '../../pictures/picture';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-tag-pictures',
@@ -10,23 +14,31 @@ import { Picture } from '../../pictures/picture';
 export class TagPicturesComponent implements OnInit {
   tag: string;
   pictures: Picture[];
+  isLoaded: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private albumService: AlbumService
+    private albumService: AlbumService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      const pictures = this.albumService.getPicturesByTag(params['tag']);
+      setTimeout(() => {
+        this.isLoaded = false;
 
-      if (!pictures.length) {
-        this.router.navigate(['/']);
-      }
+        const pictures = this.albumService.getPicturesByTag(params['tag']);
 
-      this.tag = params['tag'];
-      this.pictures = pictures;
+        if (!pictures.length) {
+          this.alertService.flashError(`Tag ${params['tag']} not found`);
+          this.router.navigate(['/']);
+        }
+
+        this.tag = params['tag'];
+        this.pictures = pictures;
+        this.isLoaded = true;
+      });
     });
   }
 

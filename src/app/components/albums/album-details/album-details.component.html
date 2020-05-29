@@ -1,4 +1,5 @@
 <app-picture-list
+  *ngIf="isLoaded"
   [title]="album.title"
   [pictures]="album.pictures"
 ></app-picture-list>

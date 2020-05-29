@@ -1,6 +1,17 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid">
+  <div
+    *ngIf="flashMessage"
+    role="alert"
+    class="alert alert-dismissible {{ flashMessage.className }}"
+  >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ flashMessage.message }}
+  </div>
+
   <router-outlet></router-outlet>
 </div>
 

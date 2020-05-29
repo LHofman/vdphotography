@@ -1,4 +1,5 @@
 <app-picture-list
+  *ngIf="isLoaded"
   [title]="'Tag:' + tag"
   [pictures]="pictures"
 ></app-picture-list>
