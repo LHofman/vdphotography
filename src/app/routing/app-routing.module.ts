@@ -7,8 +7,8 @@ import { AlbumDetailsComponent } from '../components/albums/album-details/album-
 import { TagPicturesComponent } from '../components/pictures/tag-pictures/tag-pictures.component';
 
 const appRoutes: Routes = [
-  { path: '', component: AlbumListComponent },
-  { path: 'albums', redirectTo: '/' },
+  { path: '', redirectTo: '/albums', pathMatch: 'full' },
+  { path: 'albums', component: AlbumListComponent },
   { path: 'album/:id', component: AlbumDetailsComponent },
   { path: 'tags/:tag', component: TagPicturesComponent }
 ];

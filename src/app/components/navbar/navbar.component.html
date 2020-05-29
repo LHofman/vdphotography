@@ -19,7 +19,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse col-xs-12" id="navbar-items">
       <ul class="nav navbar-nav">
-        <li class="active"><a routerLink="/albums">Albums <span class="sr-only">(current)</span></a></li>
+        <li routerLinkActive="active"><a routerLink="/albums">Albums <span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
           <a
             href="#"
@@ -43,7 +43,7 @@
               </li>
 
               <li *ngFor="let tagvalue of tagsection.values;">
-                <a [routerLink]="['/tags', tagvalue]">{{ tagvalue }}</a>
+                <a routerLinkActive="active-tag" [routerLink]="['/tags', tagvalue]">{{ tagvalue }}</a>
               </li>
             </ng-container>
           </ul>
