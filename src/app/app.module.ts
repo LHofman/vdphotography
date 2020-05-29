@@ -7,6 +7,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { AlbumsModule } from './components/albums/albums.module';
 import { FooterModule } from './components/footer/footer.module';
 import { NavbarModule } from './components/navbar/navbar.module';
+import { SharedModule } from './components/shared/shared.module';
 import { TagsModule } from './components/tags/tags.module';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { TagsModule } from './components/tags/tags.module';
     AppRoutingModule,
     BrowserModule,
     FooterModule,
+    SharedModule,
     NavbarModule,
     TagsModule
   ],

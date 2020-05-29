@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AppRoutingModule } from '../routing/app-routing.module';
-import { TagItemComponent } from '../components/tags/tag-list/tag-item/tag-item.component';
+import { AppRoutingModule } from '../../routing/app-routing.module';
+import { AlertComponent } from './alert/alert.component';
+import { TagItemComponent } from '../tags/tag-list/tag-item/tag-item.component';
 
 @NgModule({
   declarations: [
+    AlertComponent,
     TagItemComponent
   ],
   imports: [
@@ -13,6 +15,7 @@ import { TagItemComponent } from '../components/tags/tag-list/tag-item/tag-item.
     CommonModule
   ],
   exports: [
+    AlertComponent,
     TagItemComponent
   ]
 })
