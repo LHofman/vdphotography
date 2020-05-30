@@ -17,6 +17,9 @@ export class PictureItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Emits the pictureSelected event with the current picture
+   */
   onClick() {
     this.pictureService.pictureSelected.emit(this.picture);
   }

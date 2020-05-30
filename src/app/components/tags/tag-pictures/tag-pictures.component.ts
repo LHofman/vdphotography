@@ -24,12 +24,22 @@ export class TagPicturesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.subscribeToUrlParams();
+  }
+
+  /**
+   * Observes changes to the url params
+   */
+  private subscribeToUrlParams() {
     this.route.params.subscribe((params: Params) => {
+      //Execute in a different thread to make sure isLoaded is correctly provided in the structural directive
       setTimeout(() => {
         this.isLoaded = false;
 
+        //Finds pictures that have the provided tag attached to it
         const pictures = this.albumService.getPicturesByTag(params['tag']);
 
+        //Redirects if no pictures are found with the provided tag
         if (!pictures.length) {
           this.alertService.flashError(`Tag ${params['tag']} not found`);
           this.router.navigate(['/']);

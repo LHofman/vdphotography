@@ -9,13 +9,19 @@ import { Picture } from '../components/pictures/picture';
 export class AlbumService {
   albums: Album[];
 
+  /**
+   * Returns a list of all albums
+   */
   getAlbums(): Album[] {
     this.initAlbums();
     
     return this.albums.slice();
   }
 
-  getAlbum(id): Album | null {
+  /**
+   * Finds an album by id
+   */
+  getAlbum(id: number): Album | null {
     this.initAlbums();
 
     const album = this.albums.filter((album) => album.id === id);
@@ -23,16 +29,25 @@ export class AlbumService {
     return album ? album[0] : null;
   }
 
-  getPicturesByTag(tag): Picture[] {
+  /**
+   * Finds a list of pictures with the provided tag attached to it
+   */
+  getPicturesByTag(tag: string): Picture[] {
     return this.getFilteredPictures((picture: Picture) => picture.tags.includes(tag));
   }
 
-  getPicturesBySearchValue(searchValue): Picture[] {
+  /**
+   * Finds a list of pictures filtered on the title
+   */
+  getPicturesBySearchValue(searchValue: string): Picture[] {
     return this.getFilteredPictures((picture: Picture) =>
       picture.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     );
   }
 
+  /**
+   * Temporary method to initialize a list of albums with hardcoded data
+   */
   private initAlbums() {
     if (this.albums) {
       return;
@@ -95,7 +110,10 @@ export class AlbumService {
     }
   }
 
-  private getFilteredPictures(filterFn): Picture[] {
+  /**
+   * Finds a list of pictures based on a provided filter function
+   */
+  private getFilteredPictures(filterFn: (picture: Picture) => boolean): Picture[] {
     this.initAlbums();
 
     const pictures = this.albums

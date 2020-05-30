@@ -15,6 +15,13 @@ export class AlbumListComponent implements OnInit {
   constructor(private albumService: AlbumService) { }
 
   ngOnInit() {
+    this.initAlbums();
+  }
+
+  /**
+   * Initializes the albums list
+   */
+  private initAlbums() {
     this.albums = this.albumService.getAlbums();
   }
 

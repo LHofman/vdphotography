@@ -26,10 +26,16 @@ export class TagService {
     'Cute'
   ];
 
+  /**
+   * Returns a list of all Tags
+   */
   getAll(): string[] {
     return this.tags.sort();
   }
 
+  /**
+   * Returns a list of tags to use in a navigation component
+   */
   getTagsForNav(): {tag: string, highlighted: boolean}[] {
     return shuffle(
       this.tags.map((tag) => {

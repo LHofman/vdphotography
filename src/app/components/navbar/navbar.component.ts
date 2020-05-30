@@ -19,6 +19,13 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.initTags();
+  }
+
+  /**
+   * Initializes the tags list
+   */
+  private initTags() {
     const tags = this.tagService.getTagsForNav();
     this.tags = [
       {
@@ -31,12 +38,18 @@ export class NavbarComponent implements OnInit {
       },
       {},
       { values: ['Show All'] }
-    ]
+    ];
   }
 
+  /**
+   * Redirects to a list of pictures filtered on the searchValue
+   * if at least 3 chararacters are provided
+   * @param searchValue HTMLInputElement
+   */
   searchPictures(searchValue: HTMLInputElement) {
     event.preventDefault();
 
+    //Don't search for pictures if the searchValue is too small
     if (searchValue.value.length < 3) {
       this.alertService.flashInfo('Please enter at least 3 characters to filter pictures');
       return;

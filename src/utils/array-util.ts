@@ -1,3 +1,6 @@
+/**
+ * Create a new list with the elements of the provided list in a random order
+ */
 export const shuffle = (list: any[]) => {
   const newList = [];
 

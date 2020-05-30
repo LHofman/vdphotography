@@ -16,15 +16,21 @@ export class AppComponent implements OnInit {
     this.subscribeToAlerts();
   }
 
+  /**
+   * Observes alertChanged event and handles the displaying of the alerts
+   */
   private subscribeToAlerts() {
     this.alertService.alertChanged.subscribe(
       (flashMessage: { className: string, message: string }) => {
+        //Calculate id (1 more than current max)
         const flashMessageId = this.flashMessages.reduce((acc, flashMessage) =>
           Math.max(acc, flashMessage.id), 0
         ) + 1;
 
+        //Adds flash to the from of the array
         this.flashMessages.unshift({ id: flashMessageId, flashMessage });
         
+        //Removes flash message automatically after 5s
         setTimeout(() => {
           const index = this.flashMessages.lastIndexOf(
             this.flashMessages.filter((flashMessage) => flashMessage.id === flashMessageId)[0]

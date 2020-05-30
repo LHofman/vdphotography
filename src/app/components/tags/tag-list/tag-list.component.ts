@@ -12,6 +12,13 @@ export class TagListComponent implements OnInit {
   constructor(private tagService: TagService) { }
 
   ngOnInit() {
+    this.initTags();
+  }
+
+  /**
+   * Initializes the tags list
+   */
+  private initTags() {
     this.tags = this.tagService.getAll();
   }
 

@@ -19,10 +19,19 @@ export class SearchPictureComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.subscribeToUrlParams();
+  }
+
+  /**
+   * Observes changes to the url params
+   */
+  private subscribeToUrlParams() {
     this.route.params.subscribe((params: Params) => {
+      //Execute in a different thread to make sure isLoaded is correctly provided in the structural directive
       setTimeout(() => {
         this.isLoaded = false;
 
+        //Filters pictures based on the searchValue
         const pictures = this.albumService.getPicturesBySearchValue(params['searchValue']);
 
         this.searchValue = params['searchValue'];

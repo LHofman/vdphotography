@@ -15,6 +15,13 @@ export class PictureDetailsComponent implements OnInit {
   constructor(private pictureService: PictureService) { }
 
   ngOnInit() {
+    this.subscribeToPictureSelectEvent();
+  }
+
+  /**
+   * Observes changes to the pictureSelected event
+   */
+  private subscribeToPictureSelectEvent() {
     this.pictureService.pictureSelected.subscribe((picture:Picture) => {
       this.picture = picture;
     });
