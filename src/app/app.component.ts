@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { AlertService } from './services/alert.service';
 
 @Component({
@@ -6,9 +9,10 @@ import { AlertService } from './services/alert.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'vdphotography';
-  flashMessages: {id: number, flashMessage: { className: string, message: string } }[] = [];
+  flashMessages: { id: number, flashMessage: { className: string, message: string } }[] = [];
+  private alertSubscription: Subscription;
 
   constructor(private alertService: AlertService) {}
 
@@ -20,7 +24,7 @@ export class AppComponent implements OnInit {
    * Observes alertChanged event and handles the displaying of the alerts
    */
   private subscribeToAlerts() {
-    this.alertService.alertChanged.subscribe(
+    this.alertSubscription = this.alertService.alertChanged.subscribe(
       (flashMessage: { className: string, message: string }) => {
         //Calculate id (1 more than current max)
         const flashMessageId = this.flashMessages.reduce((acc, flashMessage) =>
@@ -39,5 +43,9 @@ export class AppComponent implements OnInit {
         }, 5000);
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.alertSubscription.unsubscribe();
   }
 }

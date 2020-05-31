@@ -21,7 +21,7 @@ export class PictureItemComponent implements OnInit {
    * Emits the pictureSelected event with the current picture
    */
   onClick() {
-    this.pictureService.pictureSelected.emit(this.picture);
+    this.pictureService.pictureSelected.next(this.picture);
   }
 
 }

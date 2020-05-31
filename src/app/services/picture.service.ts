@@ -1,4 +1,6 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+
+import { Injectable } from '@angular/core';
 
 import { Picture } from '../components/pictures/picture';
 
@@ -6,7 +8,7 @@ import { Picture } from '../components/pictures/picture';
   providedIn: 'root'
 })
 export class PictureService {
-  pictureSelected = new EventEmitter<Picture>();
+  pictureSelected = new Subject<Picture>();
 
   constructor() { }
 }
