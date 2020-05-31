@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <h1>Administrative Functions</h1>
+      <h3>
+        <ul>
+          <li><a [routerLink]="['/admin', 'albums', 'edit']">Edit Album</a></li>
+        </ul>
+      </h3>
+    </div>
+
+    <div class="col-md-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div *ngIf="isLoaded">
+  <form [formGroup]="editAlbumForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="basicAlbumData">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" formControlName="title">
+      <span *ngIf="editAlbumForm.get('basicAlbumData.title').invalid">
+        Please enter a title of at least 3 characters
+      </span>
+    </div>
+    <br>
+    <button class="btn btn-primary" type="submit" [disabled]="editAlbumForm.invalid">Save</button>
+  </form>
+</div>

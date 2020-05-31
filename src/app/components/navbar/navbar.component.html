@@ -19,7 +19,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse col-xs-12" id="navbar-items">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="/albums">Albums <span class="sr-only">(current)</span></a></li>
+        <li routerLinkActive="active">
+          <a routerLink="/albums">Albums <span class="sr-only">(current)</span></a>
+        </li>
         <li class="dropdown">
           <a
             href="#"
@@ -56,13 +58,17 @@
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search" #searchValue>
           </div>
-          <button type="submit" class="btn btn-default" (click)="searchPictures(searchValue)">Submit</button>
+          <button
+            type="submit"
+            class="btn btn-default"
+            (click)="searchPictures(searchValue)"
+          >Submit</button>
         </form>
       </ul>
     </div><!-- /.navbar-collapse -->
     
     <ul class="nav navbar-nav navbar-right hidden-xs">
-      <li><a href="#">Admin</a></li>
+      <li routerLinkActive="active"><a routerLink="/admin">Admin</a></li>
     </ul>
   </div><!-- /.container-fluid -->
 </nav>

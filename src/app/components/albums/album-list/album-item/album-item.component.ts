@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Album } from '../../album';
 
 @Component({
@@ -8,10 +10,22 @@ import { Album } from '../../album';
 })
 export class AlbumItemComponent implements OnInit {
   @Input() album: Album;
+  @Input() isAdmin: boolean;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onClick() {
+    let navigation = null;
+    if (this.isAdmin) {
+      navigation = ['/admin', 'albums', this.album.id, 'edit'];
+    } else {
+      navigation = ['/album', this.album.id];
+    }
+
+    this.router.navigate(navigation);
   }
 
 }

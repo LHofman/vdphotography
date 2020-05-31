@@ -1,5 +1,5 @@
 <h4>{{ album.title }}</h4>
-<a [routerLink]="['/album', album.id]">
+<a (click)="onClick()">
   <img
     class="album-thumbnail"
     src="{{ album.thumbnail }}"

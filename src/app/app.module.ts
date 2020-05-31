@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './routing/app-routing.module';
+import { AdminModule } from './components/admin/admin.module';
 import { AlbumsModule } from './components/albums/albums.module';
 import { FooterModule } from './components/footer/footer.module';
 import { NavbarModule } from './components/navbar/navbar.module';
@@ -15,6 +16,7 @@ import { TagsModule } from './components/tags/tags.module';
     AppComponent
   ],
   imports: [
+    AdminModule,
     AlbumsModule,
     AppRoutingModule,
     BrowserModule,

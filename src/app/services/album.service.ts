@@ -46,6 +46,20 @@ export class AlbumService {
   }
 
   /**
+   * Updates an album
+   */
+  update(id: number, album: Album) {
+    const existingAlbum = this.albums.filter((album: Album) => album.id === id);
+    if (!existingAlbum) {
+      throw new Error('Album not found');
+    }
+
+    const index = this.albums.indexOf(existingAlbum[0]);
+
+    this.albums[index] = album;
+  }
+
+  /**
    * Temporary method to initialize a list of albums with hardcoded data
    */
   private initAlbums() {
