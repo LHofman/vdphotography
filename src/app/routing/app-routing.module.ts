@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { CanDeactivateGuard } from './guards/can-deactivate-guard.service';
+
 import { AdminComponent } from '../components/admin/admin/admin.component';
 import { AlbumDetailsComponent } from '../components/albums/album-details/album-details.component';
 import { AlbumEditComponent } from '../components/albums/album-edit/album-edit.component';
@@ -14,7 +16,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/albums', pathMatch: 'full' },
   { path: 'admin', component: AdminComponent, children: [
     { path: 'albums/edit', component: AlbumListComponent },
-    { path: 'albums/:id/edit', component: AlbumEditComponent }
+    { path: 'albums/:id/edit', component: AlbumEditComponent, canDeactivate: [CanDeactivateGuard] }
   ] },
   { path: 'albums', component: AlbumListComponent },
   { path: 'album/:id', component: AlbumDetailsComponent },
@@ -32,6 +34,7 @@ const appRoutes: Routes = [
   ],
   exports: [
     RouterModule
-  ]
+  ],
+  providers: [CanDeactivateGuard]
 })
 export class AppRoutingModule { }

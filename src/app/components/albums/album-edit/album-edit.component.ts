@@ -1,9 +1,13 @@
+import { Observable } from 'rxjs';
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
+import { CanComponentDeactivate } from 'src/app/routing/guards/interfaces/can-component-deactivate';
 import { AlbumService } from 'src/app/services/album.service';
 import { AlertService } from 'src/app/services/alert.service';
+
 import { Album } from '../album';
 
 @Component({
@@ -11,7 +15,7 @@ import { Album } from '../album';
   templateUrl: './album-edit.component.html',
   styleUrls: ['./album-edit.component.css']
 })
-export class AlbumEditComponent implements OnInit {
+export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
   album: Album;
   isLoaded: boolean = false;
   editAlbumForm: FormGroup;
@@ -49,6 +53,14 @@ export class AlbumEditComponent implements OnInit {
     } catch (error) {
       this.alertService.flashError(error.message);
     }
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (this.album.title === this.editAlbumForm.value.basicAlbumData.title) {
+      return true;
+    }
+
+    return confirm('Do you want to discard the changes?');
   }
 
   /**

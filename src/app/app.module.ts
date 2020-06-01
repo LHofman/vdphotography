@@ -16,9 +16,10 @@ import { TagsModule } from './components/tags/tags.module';
     AppComponent
   ],
   imports: [
+    AppRoutingModule,
+
     AdminModule,
     AlbumsModule,
-    AppRoutingModule,
     BrowserModule,
     FooterModule,
     SharedModule,
