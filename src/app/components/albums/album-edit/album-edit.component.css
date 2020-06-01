@@ -1,3 +1,21 @@
+#picture-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.picture {
+  height: 75px;
+  margin: 2px;
+}
+
+.remove-picture-icon {
+  color: red;
+  position: relative;
+  left: -20px;
+  top: -20px;
+}
+
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }

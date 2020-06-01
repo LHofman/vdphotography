@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 
+import { removeFromListById, updateInListById } from 'src/utils/array-util';
+
+import { AlertService } from './alert.service';
+
 import { Album } from '../components/albums/album';
 import { Picture } from '../components/pictures/picture';
 
@@ -8,6 +12,8 @@ import { Picture } from '../components/pictures/picture';
 })
 export class AlbumService {
   albums: Album[];
+
+  constructor(private alertService: AlertService) { }
 
   /**
    * Returns a list of all albums
@@ -49,25 +55,11 @@ export class AlbumService {
    * Updates an album
    */
   update(id: number, album: Album) {
-    const existingAlbum = this.albums.filter((album: Album) => album.id === id);
-    if (!existingAlbum) {
-      throw new Error('Album not found');
-    }
-
-    const index = this.albums.indexOf(existingAlbum[0]);
-
-    this.albums[index] = album;
+    return updateInListById(this.albums, id, album, 'Album not found', this.alertService);
   }
 
-  deleteAlbum(id: number) {
-    const existingAlbum = this.albums.filter((album: Album) => album.id === id);
-    if (!existingAlbum) {
-      throw new Error('Album not found');
-    }
-
-    const index = this.albums.indexOf(existingAlbum[0]);
-
-    this.albums.splice(index, 1);
+  deleteAlbum(id: number): boolean {
+    return removeFromListById(this.albums, id, 'Album not found', this.alertService);
   }
 
   /**
@@ -122,7 +114,7 @@ export class AlbumService {
 
     const pictures: Picture[] = [];
 
-    for (let i=1; i<=27; i++) {
+    for (let i=1; i<=sources.length; i++) {
       let tag = tags[Math.floor(Math.random() * tags.length)];
       let title = titles[Math.floor(Math.random() * titles.length)];
       pictures.push(new Picture(i, title, sources[i-1], [tag]));
@@ -150,6 +142,4 @@ export class AlbumService {
 
     return pictures;
   }
-
-  constructor() { }
 }

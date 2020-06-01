@@ -9,6 +9,8 @@ import { AlbumService } from 'src/app/services/album.service';
 import { AlertService } from 'src/app/services/alert.service';
 
 import { Album } from '../album';
+import { Picture } from '../../pictures/picture';
+import { removeFromListById, compareLists } from 'src/utils/array-util';
 
 @Component({
   selector: 'app-album-edit',
@@ -19,6 +21,7 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
   album: Album;
   isLoaded: boolean = false;
   editAlbumForm: FormGroup;
+  albumPictures: Picture[];
 
   constructor(
     private route: ActivatedRoute,
@@ -41,18 +44,17 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
 
     //Update album object
     this.album.title = formData.basicAlbumData.title;
+    this.album.pictures = this.albumPictures;
 
-    //Update album in service
-    try {
-      this.albumService.update(this.album.id, this.album);
-
-      this.alertService.flashSuccess('Album succesfully updated');
-
-      //Redirect back to edit albums page
-      this.router.navigate(['/admin', 'albums', 'edit']);
-    } catch (error) {
-      this.alertService.flashError(error.message);
+    const albumUpdated = this.albumService.update(this.album.id, this.album);
+    if (!albumUpdated) {
+      return;
     }
+
+    this.alertService.flashSuccess('Album succesfully updated');
+
+    //Redirect back to edit albums page
+    this.router.navigate(['/admin', 'albums', 'edit']);
   }
 
   reset() {
@@ -66,20 +68,29 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
     }
 
     //Delete album in service
-    try {
-      this.albumService.deleteAlbum(this.album.id);
-
-      this.alertService.flashSuccess('Album succesfully deleted');
-
-      //Redirect back to edit albums page
-      this.router.navigate(['/admin', 'albums', 'edit']);
-    } catch (error) {
-      this.alertService.flashError(error.message);
+    const albumDeleted = this.albumService.deleteAlbum(this.album.id);
+    if (!albumDeleted) {
+      return;
     }
+
+    this.alertService.flashSuccess('Album succesfully deleted');
+
+    //Redirect back to edit albums page
+    this.router.navigate(['/admin', 'albums', 'edit']);
   }
 
+  removePicture(id: number) {
+    removeFromListById(this.albumPictures, id, '', this.alertService);
+  }
+
+  /**
+   * Checks for changes in the album before navigating away
+   */
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.album.title === this.editAlbumForm.value.basicAlbumData.title) {
+    if (
+      this.album.title === this.editAlbumForm.value.basicAlbumData.title &&
+      compareLists(this.album.pictures, this.albumPictures)
+    ) {
       return true;
     }
 
@@ -122,6 +133,8 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
         'title': new FormControl(this.album.title, [Validators.required, Validators.minLength(3)])
       })
     });
+
+    this.albumPictures = [...this.album.pictures];
   }
 
 }
