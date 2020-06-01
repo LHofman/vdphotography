@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { AlbumService } from 'src/app/services/album.service';
+
+import { PictureService } from 'src/app/services/picture.service';
+
 import { Picture } from '../picture';
 
 @Component({
@@ -14,8 +16,7 @@ export class SearchPictureComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private albumService: AlbumService
+    private pictureService: PictureService
   ) { }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class SearchPictureComponent implements OnInit {
         this.isLoaded = false;
 
         //Filters pictures based on the searchValue
-        const pictures = this.albumService.getPicturesBySearchValue(params['searchValue']);
+        const pictures = this.pictureService.getPicturesBySearchValue(params['searchValue']);
 
         this.searchValue = params['searchValue'];
         this.pictures = pictures;

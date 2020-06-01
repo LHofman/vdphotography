@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
-import { AlbumService } from 'src/app/services/album.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { PictureService } from 'src/app/services/picture.service';
 
 import { Picture } from '../../pictures/picture';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-tag-pictures',
@@ -19,8 +18,8 @@ export class TagPicturesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private albumService: AlbumService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private pictureService: PictureService
   ) { }
 
   ngOnInit() {
@@ -37,7 +36,7 @@ export class TagPicturesComponent implements OnInit {
         this.isLoaded = false;
 
         //Finds pictures that have the provided tag attached to it
-        const pictures = this.albumService.getPicturesByTag(params['tag']);
+        const pictures = this.pictureService.getPicturesByTag(params['tag']);
 
         //Redirects if no pictures are found with the provided tag
         if (!pictures.length) {
