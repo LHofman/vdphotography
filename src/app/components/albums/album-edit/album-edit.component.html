@@ -11,12 +11,36 @@
     </div>
     <hr>
     <div class="row">
-      <div id="picture-list-container">
+      <h3>Pictures in Album</h3>
+      <div class="picture-list-container">
         <div *ngFor="let picture of albumPictures">
           <img class="picture" src="{{ picture.src }}"/>
           <span
             class="glyphicon glyphicon-remove remove-picture-icon"
-            (click)="removePicture(picture.id)"
+            (click)="removePicture(picture)"
+          ></span>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <h3>Add pictures to Album</h3>
+      <div class="col-sm-4 col-lg-2">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" formControlName="searchValue">
+        </div>
+        <button
+          type="button"
+          class="btn btn-default"
+          (click)="searchPictures()"
+        >Find Pictures</button>
+      </div>
+      <div class="col-sm-8 col-lg-10 picture-list-container">
+        <div *ngFor="let picture of filteredPictures">
+          <img class="picture" src="{{ picture.src }}"/>
+          <span
+            class="glyphicon glyphicon-plus add-picture-icon"
+            (click)="addPicture(picture)"
           ></span>
         </div>
       </div>

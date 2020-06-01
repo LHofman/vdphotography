@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from 'src/app/routing/app-routing.module';
 import { PicturesModule } from '../pictures/pictures.module';
@@ -20,7 +20,9 @@ import { AlbumListComponent } from './album-list/album-list.component';
   imports: [
     AppRoutingModule,
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
+
     PicturesModule
   ],
   exports: [

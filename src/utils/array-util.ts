@@ -23,12 +23,12 @@ export const shuffle = (list: any[]) => {
 export const removeFromListById = (
   list: EntityWithId[],
   id: number,
-  notFoundError: string,
-  alertService: AlertService
+  notFoundError?: string,
+  alertService?: AlertService
 ): boolean => {
   const existingEntity = list.filter((entity: EntityWithId) => entity.getId() === id);
   if (!existingEntity) {
-    if (notFoundError.length) {
+    if (notFoundError) {
       alertService.flashError(notFoundError);
     }
     return false;
@@ -49,12 +49,12 @@ export const updateInListById = (
   list: EntityWithId[],
   id: number,
   newEntity: EntityWithId,
-  notFoundError: string,
-  alertService: AlertService
+  notFoundError?: string,
+  alertService?: AlertService
 ): boolean => {
   const existingEntity = list.filter((entity: EntityWithId) => entity.getId() === id);
   if (!existingEntity) {
-    if (notFoundError.length) {
+    if (notFoundError) {
       alertService.flashError(notFoundError);
     }
     return false;

@@ -4,13 +4,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
+import { removeFromListById, compareLists } from 'src/utils/array-util';
+
 import { CanComponentDeactivate } from 'src/app/routing/guards/interfaces/can-component-deactivate';
 import { AlbumService } from 'src/app/services/album.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { PictureService } from 'src/app/services/picture.service';
 
 import { Album } from '../album';
 import { Picture } from '../../pictures/picture';
-import { removeFromListById, compareLists } from 'src/utils/array-util';
 
 @Component({
   selector: 'app-album-edit',
@@ -22,12 +24,15 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
   isLoaded: boolean = false;
   editAlbumForm: FormGroup;
   albumPictures: Picture[];
+  filteredPictures: Picture[];
+  searchValue: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private albumService: AlbumService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private pictureService: PictureService
   ) { }
 
   ngOnInit() {
@@ -79,8 +84,38 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
     this.router.navigate(['/admin', 'albums', 'edit']);
   }
 
-  removePicture(id: number) {
-    removeFromListById(this.albumPictures, id, '', this.alertService);
+  removePicture(picture: Picture) {
+    const includesSearchValue = this.searchValue && this.searchValue.length &&
+      picture.title.toLocaleLowerCase().includes(
+        this.searchValue.toLocaleLowerCase()
+      );
+    if (includesSearchValue) {
+      this.filteredPictures.push(picture);
+    }
+
+    removeFromListById(this.albumPictures, picture.id);
+  }
+
+  searchPictures() {
+    const searchValue = this.editAlbumForm.value.searchValue;
+
+    //Don't search for pictures if the searchValue is too small
+    if (searchValue.length < 3) {
+      this.alertService.flashInfo('Please enter at least 3 characters to filter pictures');
+      return;
+    }
+
+    this.searchValue = searchValue;
+
+    this.filteredPictures = [...this.pictureService.getPicturesBySearchValue(searchValue)
+      .filter((picture: Picture) => !this.albumPictures.includes(picture))];
+
+    console.log(this.filteredPictures);
+  }
+
+  addPicture(picture: Picture) {
+    this.albumPictures.push(picture);
+    removeFromListById(this.filteredPictures, picture.id);
   }
 
   /**
@@ -131,10 +166,13 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
     this.editAlbumForm = new FormGroup({
       'basicAlbumData': new FormGroup({
         'title': new FormControl(this.album.title, [Validators.required, Validators.minLength(3)])
-      })
+      }),
+      'searchValue': new FormControl('')
     });
 
     this.albumPictures = [...this.album.pictures];
+
+    this.filteredPictures = [];
   }
 
 }

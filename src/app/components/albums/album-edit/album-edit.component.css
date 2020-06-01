@@ -1,4 +1,4 @@
-#picture-list-container {
+.picture-list-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -11,6 +11,13 @@
 
 .remove-picture-icon {
   color: red;
+  position: relative;
+  left: -20px;
+  top: -20px;
+}
+
+.add-picture-icon {
+  color: green;
   position: relative;
   left: -20px;
   top: -20px;
