@@ -55,6 +55,10 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
     }
   }
 
+  reset() {
+    this.initForm();
+  }
+
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.album.title === this.editAlbumForm.value.basicAlbumData.title) {
       return true;
