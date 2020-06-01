@@ -59,6 +59,25 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
     this.initForm();
   }
 
+  delete() {
+    const confirmation = confirm('Are you sure you want to delete this album?');
+    if (!confirmation) {
+      return;
+    }
+
+    //Delete album in service
+    try {
+      this.albumService.deleteAlbum(this.album.id);
+
+      this.alertService.flashSuccess('Album succesfully deleted');
+
+      //Redirect back to edit albums page
+      this.router.navigate(['/admin', 'albums', 'edit']);
+    } catch (error) {
+      this.alertService.flashError(error.message);
+    }
+  }
+
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.album.title === this.editAlbumForm.value.basicAlbumData.title) {
       return true;

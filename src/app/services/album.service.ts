@@ -59,6 +59,17 @@ export class AlbumService {
     this.albums[index] = album;
   }
 
+  deleteAlbum(id: number) {
+    const existingAlbum = this.albums.filter((album: Album) => album.id === id);
+    if (!existingAlbum) {
+      throw new Error('Album not found');
+    }
+
+    const index = this.albums.indexOf(existingAlbum[0]);
+
+    this.albums.splice(index, 1);
+  }
+
   /**
    * Temporary method to initialize a list of albums with hardcoded data
    */
