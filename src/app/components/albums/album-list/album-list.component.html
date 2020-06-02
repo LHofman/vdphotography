@@ -1,3 +1,13 @@
+<div class="row search-input-row">
+  <div class="col-sm-6 col-lg-4 search-input-container">
+    <input type="text" class="form-control search-input-field" placeholder="Search" #searchValue>
+    <button
+      type="button"
+      class="btn btn-default"
+      (click)="searchAlbums(searchValue)"
+    >Find Pictures</button>
+  </div>
+</div>
 <div id="album-list-container">
   <app-album-item
     *ngFor="let album of albums"

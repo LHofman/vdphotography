@@ -26,6 +26,10 @@ export class AlbumListComponent implements OnInit {
     this.initAlbums();
   }
 
+  searchAlbums(searchValue: HTMLInputElement) {
+    this.albums = this.albumService.getAlbumsBySearchValue(searchValue.value);
+  }
+
   /**
    * Initializes the albums list
    */

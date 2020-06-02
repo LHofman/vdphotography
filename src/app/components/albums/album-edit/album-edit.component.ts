@@ -113,8 +113,6 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
 
     this.filteredPictures = [...this.pictureService.getPicturesBySearchValue(searchValue)
       .filter((picture: Picture) => !this.albumPictures.includes(picture))];
-
-    console.log(this.filteredPictures);
   }
 
   addPicture(picture: Picture) {

@@ -48,6 +48,17 @@ export class AlbumService {
   }
 
   /**
+   * Finds a list of albums filtered on the title
+   */
+  getAlbumsBySearchValue(searchValue: string): Album[] {
+    this.initAlbums();
+
+    return this.albums.filter((album: Album) =>
+      album.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    );
+  }
+
+  /**
    * Temporary method to initialize a list of albums with hardcoded data
    */
   private initAlbums() {
@@ -55,12 +66,20 @@ export class AlbumService {
       return;
     }
 
+    const titles: string[] = [
+      'Title',
+      'Animals',
+      'Baby Animals',
+      'Cute Baby Animals'
+    ];
+
     const pictures: Picture[] = this.pictureService.getAllPictures();
 
     this.albums = [];
     let thumbnail = 'assets/images/-1526382343.jpg';
     for (let i=1; i<=27; i++) {
-      this.albums.push(new Album(i, 'Title', thumbnail, pictures));
+      let title = titles[Math.floor(Math.random() * titles.length)];
+      this.albums.push(new Album(i, title, thumbnail, pictures));
     }
   }
 
