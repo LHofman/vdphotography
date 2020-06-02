@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PictureService } from 'src/app/services/picture.service';
 
@@ -11,8 +12,9 @@ import { Picture } from '../../picture';
 })
 export class PictureItemComponent implements OnInit {
   @Input() picture: Picture;
+  @Input() isAdmin: boolean;
 
-  constructor(private pictureService: PictureService) { }
+  constructor(private router: Router, private pictureService: PictureService) { }
 
   ngOnInit() {
   }
@@ -21,7 +23,11 @@ export class PictureItemComponent implements OnInit {
    * Emits the pictureSelected event with the current picture
    */
   onClick() {
-    this.pictureService.pictureSelected.next(this.picture);
+    if (this.isAdmin) {
+      this.router.navigate(['/admin', 'pictures', this.picture.id, 'edit']);
+    } else {
+      this.pictureService.pictureSelected.next(this.picture);
+    }
   }
 
 }

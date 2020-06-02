@@ -1,10 +1,21 @@
+<div class="row search-input-row">
+  <div class="col-sm-6 col-lg-4 search-input-container">
+    <input type="text" class="form-control search-input-field" placeholder="Search" #searchValue>
+    <button
+      type="button"
+      class="btn btn-default"
+      (click)="searchPictures(searchValue)"
+    >Find Pictures</button>
+  </div>
+</div>
 <div class="row">
-  <div class="col-md-8">
+  <div class="{{ this.isAdmin ? 'col-md-12' : 'col-md-8' }}">
     <h1>{{ title }}</h1>
-    <div id="picture-list-container" *ngIf="pictures.length; else emptyList">
+    <div id="picture-list-container" *ngIf="pictures && pictures.length; else emptyList">
       <app-picture-item
         *ngFor="let picture of pictures"
         [picture]="picture"
+        [isAdmin]="isAdmin"
       ></app-picture-item>
     </div>
 
@@ -13,7 +24,7 @@
     </ng-template>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4" *ngIf="!this.isAdmin">
     <app-picture-details></app-picture-details>
   </div>
 </div>

@@ -8,10 +8,15 @@
     >Find Pictures</button>
   </div>
 </div>
-<div id="album-list-container">
+
+<div id="album-list-container" *ngIf="albums && albums.length; else emptyList">
   <app-album-item
     *ngFor="let album of albums"
     [album]="album"
     [isAdmin]="isAdmin"
   ></app-album-item>
 </div>
+
+<ng-template #emptyList>
+  <h3>No Albums Found</h3>
+</ng-template>

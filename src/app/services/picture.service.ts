@@ -2,6 +2,10 @@ import { Subject } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
+import { updateInListById, removeFromListById } from 'src/utils/array-util';
+
+import { AlertService } from './alert.service';
+
 import { Picture } from '../components/pictures/picture';
 
 @Injectable({
@@ -11,12 +15,23 @@ export class PictureService {
   pictureSelected = new Subject<Picture>();
   pictures: Picture[];
 
-  constructor() { }
+  constructor(private alertService: AlertService) { }
 
   getAllPictures(): Picture[] {
     this.initPictures();
 
     return this.pictures.slice();
+  }
+
+  /**
+   * Finds an album by id
+   */
+  getPicture(id: number): Picture | null {
+    this.initPictures();
+
+    const picture = this.pictures.filter((picture) => picture.id === id);
+
+    return picture ? picture[0] : null;
   }
 
   /**
@@ -37,6 +52,17 @@ export class PictureService {
     return this.pictures.filter((picture: Picture) =>
       picture.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     );
+  }
+
+  /**
+   * Updates a Picture
+   */
+  update(id: number, picture: Picture) {
+    return updateInListById(this.pictures, id, picture, 'Picture not found', this.alertService);
+  }
+
+  deletePicture(id: number): boolean {
+    return removeFromListById(this.pictures, id, 'Picture not found', this.alertService);
   }
 
   private initPictures() {

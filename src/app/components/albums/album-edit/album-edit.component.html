@@ -2,7 +2,7 @@
   <form [formGroup]="editAlbumForm" (ngSubmit)="onSubmit()">
     <!-- Basic Album Data -->
     <div class="row">
-      <div class="col-sm-6 col-lg-4"formGroupName="basicAlbumData">
+      <div class="col-sm-6 col-lg-4" formGroupName="basicAlbumData">
         <label for="title">Title</label>
         <input type="text" class="form-control" formControlName="title">
         <span *ngIf="editAlbumForm.get('basicAlbumData.title').invalid">

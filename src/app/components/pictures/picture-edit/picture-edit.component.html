@@ -1,0 +1,21 @@
+<div *ngIf="isLoaded">
+  <form [formGroup]="editPictureForm" (ngSubmit)="onSubmit()">
+    <!-- Basic Picture Data -->
+    <div class="row">
+      <div class="col-sm-6 col-lg-4" formGroupName="basicPictureData">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" formControlName="title">
+        <span *ngIf="editPictureForm.get('basicPictureData.title').invalid">
+          Please enter a title of at least 3 characters
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <hr>
+      <button class="btn btn-success" type="submit" [disabled]="editPictureForm.invalid">Save</button>
+      <button class="btn btn-primary" type="button" (click)="reset()">Reset Fields</button>
+      <button class="btn btn-danger" type="button" (click)="delete()">Delete Picture</button>
+    </div>
+  </form>
+</div>
