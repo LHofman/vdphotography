@@ -26,6 +26,10 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
   albumPictures: Picture[];
   filteredPictures: Picture[];
   searchValue: string;
+  collapsableSections = {
+    removePicturesSection: true, //true = expanded
+    addPicturesSection: true
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -116,6 +120,16 @@ export class AlbumEditComponent implements OnInit, CanComponentDeactivate {
   addPicture(picture: Picture) {
     this.albumPictures.push(picture);
     removeFromListById(this.filteredPictures, picture.id);
+  }
+
+  toggleCollapse(section: string) {
+    this.collapsableSections[section] = !this.collapsableSections[section];
+  }
+
+  getCollapsedClass(section: string): string {
+    return this.collapsableSections[section]
+      ? 'glyphicon glyphicon-chevron-down'
+      : 'glyphicon glyphicon-chevron-right';
   }
 
   /**

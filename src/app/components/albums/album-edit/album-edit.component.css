@@ -30,3 +30,19 @@ input.ng-invalid.ng-touched {
 .btn {
   margin-right: 10px;
 }
+
+.collapsable-hr {
+  display: flex;
+  align-items: center;
+  margin-left: -25px;
+}
+
+.collapse-span {
+  margin-right: 10px;
+}
+
+.collapse-hr {
+  flex: 1;
+  border-bottom: 1px solid darkgray;
+  margin-left: 10px;
+}
